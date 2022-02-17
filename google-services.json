@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "193210671249",
+    "project_id": "firefighter-894bc",
+    "storage_bucket": "firefighter-894bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193210671249:android:568be93c43487416159f30",
+        "android_client_info": {
+          "package_name": "com.sibdev.firefighter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193210671249-h1bokj4fscqtf6n30cprmcdoj4b1gnps.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sibdev.firefighter",
+            "certificate_hash": "34756c07b7435aecc35157e1ba2eb3b44787ab14"
+          }
+        },
+        {
+          "client_id": "193210671249-n2hujpgrpvfp820aoajuhff4uvrvfsbj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSKHBfgV9cH3_OgrfOVWeGE8xCibpcfzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "193210671249-n2hujpgrpvfp820aoajuhff4uvrvfsbj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

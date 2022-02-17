@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Firefighter</string>
+    <string name="Home">HOME</string>
+    <string name="Profile">Profile</string>
+    <string name="Settings">Alarm Settings</string>
+    <string name="info">Hoe it works</string>
+    <string name="share">Share this app</string>
+    <string name="alarm">Alarm</string>
+    <string name="precaution">PRECAUTION</string>
+    <string name="urgent_steps">URGENT STEPS</string>
+    <string name="communities">Communities</string>
+<!--  <string name="default_web_client_id">193210671249-n2hujpgrpvfp820aoajuhff4uvrvfsbj.apps.googleusercontent.com</string>-->
+</resources>
