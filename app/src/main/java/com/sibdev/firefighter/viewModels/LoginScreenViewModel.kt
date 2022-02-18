@@ -11,6 +11,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.sibdev.firefighter.db.Repository
+import com.sibdev.firefighter.db.SharedPref
 import com.sibdev.firefighter.models.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
@@ -19,7 +20,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class LoginScreenViewModel(val context: Context):ViewModel() {
-    private val repository = Repository(ioDispacher = Dispatchers.IO)
     private val auth = Firebase.auth
     private val _signedIn = MutableStateFlow(false)
     val signedIn:StateFlow<Boolean> = _signedIn
@@ -46,7 +46,13 @@ class LoginScreenViewModel(val context: Context):ViewModel() {
      fun addUser(account: GoogleSignInAccount) {
         val user = User(uId = auth.uid!!, email = account.email!!, displayName = account.displayName!! , imageUrl = account.photoUrl.toString() )
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addUserToFirestore(user = user)
+            Repository.userById(auth.uid!!).set(user).addOnSuccessListener {
+                val sharedPref = SharedPref(context = context)
+                sharedPref.setEmail(user.email)
+                sharedPref.setName(user.displayName)
+                if(user.imageUrl!=null)
+                sharedPref.setImageUrl(user.imageUrl)
+            }
         }
     }
 }

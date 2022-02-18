@@ -17,7 +17,7 @@ fun DrawerNavigation(drawerNavController: NavHostController){
             HomeScreen()
         }
         composable(route = Screens.Profile.route){
-            ProfileScreen()
+            ProfileNavigation()
         }
         composable(route = Screens.Settings.route){
             SettingsScreen()
