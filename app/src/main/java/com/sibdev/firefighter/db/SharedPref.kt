@@ -2,6 +2,7 @@ package com.sibdev.firefighter.db
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.media.session.MediaSession
 
 class SharedPref(val context: Context) {
     val instance = context.getSharedPreferences("SharedPref",0)
@@ -13,6 +14,16 @@ class SharedPref(val context: Context) {
     val number3:String=instance.getString("number3","")!!
     val number4:String=instance.getString("number4","")!!
     val number5:String=instance.getString("number5","")!!
+    var token:String=instance.getString("token","")!!
+    set(value){
+       instance.edit().putString("token",value).apply()
+    }
+
+    var community:String=instance.getString("community","")!!
+    set(value)
+    {
+        instance.edit().putString("community",value).apply()
+    }
 
     fun setEmail(email:String)=instance.edit().putString("email",email).commit()
     fun setName(name:String)=instance.edit().putString("name",name).commit()

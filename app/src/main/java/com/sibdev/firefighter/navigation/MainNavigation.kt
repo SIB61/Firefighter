@@ -20,5 +20,8 @@ fun MainNavigation(mainNavController: NavHostController){
         composable(route = "main_screen"){
             MainScreen(mainNavController)
         }
+        composable(route = "notification_screen"){
+           NotificationScreen(mainNavController)
+        }
     }
 }

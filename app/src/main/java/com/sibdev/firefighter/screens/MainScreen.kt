@@ -31,7 +31,7 @@ fun MainScreen(mainNavController: NavHostController) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         scaffoldState = state,
         drawerContent = { Drawer(nc = drawerNavController, state = state, scope = scope, logOut = { mainScreenViewModel.logOut() } ) },
-        topBar = { TopBar(state = state, scope = scope)}
+        topBar = { TopBar(state = state, scope = scope,mainNavController)}
         ) {
         DrawerNavigation(drawerNavController = drawerNavController)
         if(isLoggedOut){

@@ -41,7 +41,7 @@ class EmergencyNumberScreenViewModel : ViewModel(){
     }
 }
 class EmergencyNumberScreenViewModelProvider : ViewModelProvider.NewInstanceFactory() {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return EmergencyNumberScreenViewModel() as T
     }
 }

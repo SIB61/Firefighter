@@ -10,9 +10,12 @@ object Repository {
     val Users=Firebase.firestore.collection("USERS")
     val Communities=Firebase.firestore.collection("COMMUNITIES")
     val MyCommunities= Users.document(Firebase.auth.uid!!).collection("MYCOMMUNITIES")
-    fun requests(id:String) = MyCommunities.document(id).collection("REQUESTS")
-    fun request(id:String)= Communities.document(id).collection("REQUESTS")
+    fun notifications(id:String)= communityById(id).collection("NOTIFICATIONS")
+    fun members(id:String) = MyCommunities.document(id).collection("REQUESTS")
+    fun membersOfCommunity(id: String) = Communities.document(id).collection("MEMBERS")
+    fun communityById(id: String) = Communities.document(id)
     fun userById(id:String):DocumentReference=Firebase.firestore.document("USERS/"+id)
     fun communityMembers(id:String):CollectionReference= Communities.document(id).collection("MEMBERS")
+
 }
 

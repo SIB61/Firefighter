@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.CreationExtras
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ktx.firestore
@@ -42,12 +43,10 @@ init {
         v?.documentChanges?.forEach {
             if(it.type==DocumentChange.Type.ADDED)
             s.add(it.document.toObject(Community::class.java))
-
         }
     }
 }
-
 }
 class ProfileScreenViewModelProvider(val context: Context):ViewModelProvider.NewInstanceFactory(){
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T = ProfileScreenViewModel(context = context) as T
+    override fun <T : ViewModel> create(modelClass: Class<T>): T = ProfileScreenViewModel(context = context) as T
 }

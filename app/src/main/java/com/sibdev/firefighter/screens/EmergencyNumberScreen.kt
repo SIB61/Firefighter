@@ -12,21 +12,41 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.sibdev.firefighter.db.Repository
+import com.sibdev.firefighter.db.SharedPref
 import com.sibdev.firefighter.models.Numbers
+import com.sibdev.firefighter.models.User
 import com.sibdev.firefighter.viewModels.EmergencyNumberScreenViewModel
 import com.sibdev.firefighter.viewModels.EmergencyNumberScreenViewModelProvider
 
 @Composable
 fun EmergencyNumberScreen(profileNavController: NavHostController) {
     val vm = EmergencyNumberScreenViewModelProvider().create(EmergencyNumberScreenViewModel::class.java)
-    var number1 by remember { mutableStateOf("1233") }
-    var number2 by remember { mutableStateOf("") }
-    var number3 by remember { mutableStateOf("") }
-    var number4 by remember { mutableStateOf("") }
-    var number5 by remember { mutableStateOf("") }
+    val context = LocalContext.current
+    val sharedPref = SharedPref(context = context)
+    var number1 by remember { mutableStateOf(sharedPref.number1) }
+    var number2 by remember { mutableStateOf(sharedPref.number2) }
+    var number3 by remember { mutableStateOf(sharedPref.number3) }
+    var number4 by remember { mutableStateOf(sharedPref.number4) }
+    var number5 by remember { mutableStateOf(sharedPref.number5) }
+
+//    Repository.userById(Firebase.auth.uid!!).addSnapshotListener { v, e ->
+//        val user = v?.toObject(User::class.java)
+//        if(user!=null) {
+//            number1 = user.number1
+//            number2 = user.number2
+//            number3 = user.number3
+//            number4 = user.number4
+//            number5 = user.number5
+//        }
+//
+//    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -71,6 +91,11 @@ fun EmergencyNumberScreen(profileNavController: NavHostController) {
             Text(text = "*These numbers will be informed \nthrough messages in emergency", color = Color.Black.copy(0.25f))
         }
         Button(onClick = {
+            sharedPref.setNumber1(number1)
+            sharedPref.setNumber2(number2)
+            sharedPref.setNumber3(number3)
+            sharedPref.setNumber4(number4)
+            sharedPref.setNumber5(number5)
             vm.saveEmergencyNumbers(Numbers(number1,number2,number3,number4,number5))
                        profileNavController.navigateUp()
                          },

@@ -4,5 +4,6 @@ data class Request(
     val id:String="",
     val name:String="",
     val location:String="",
-    val imageUrl:String=""
+    val imageUrl:String="",
+val status:String="pending"
 )

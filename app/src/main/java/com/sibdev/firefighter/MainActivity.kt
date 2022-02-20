@@ -13,9 +13,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.iid.FirebaseInstanceIdReceiver
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.RemoteMessage
+import com.sibdev.firefighter.db.Repository
 import com.sibdev.firefighter.navigation.MainNavigation
 import com.sibdev.firefighter.screens.LoginScreen
+import com.sibdev.firefighter.service.MyFirebaseMessagingService
 import com.sibdev.firefighter.ui.theme.FirefighterTheme
+import com.sibdev.firefighter.utils.foregroundStartService
+import com.sibdev.firefighter.utils.vibrate
 import com.sibdev.firefighter.viewModels.LoginScreenViewModel
 
 class MainActivity : ComponentActivity() {
@@ -34,6 +43,6 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-
+       // vibrate()
     }
 }

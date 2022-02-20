@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.CreationExtras
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,5 +22,5 @@ class MainScreenViewModel(context: Context):ViewModel(){
     }
 }
 class MainScreenViewModelProvider(val context: Context):ViewModelProvider.NewInstanceFactory(){
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T = MainScreenViewModel(context = context) as T
+    override fun <T : ViewModel> create(modelClass: Class<T>): T = MainScreenViewModel(context = context) as T
 }

@@ -67,8 +67,8 @@ fun JoinOneSegment() {
             Button(onClick = {
                 if (v.isNotEmpty() && e.isNotEmpty()) {
                     val request =
-                        Request(Firebase.auth.uid!!, sharedPref.name, e, sharedPref.imageUrl)
-                    Repository.request(id = e).add(request).addOnSuccessListener {
+                        Request(id = Firebase.auth.uid!!, name = sharedPref.name, location =  e, imageUrl = sharedPref.imageUrl)
+                    Repository.members(id = v).add(request).addOnSuccessListener {
                         Toast.makeText(context, "Request has been sent", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -86,6 +86,9 @@ fun AddNewSegment() {
         mutableStateOf("")
     }
     var n by remember {
+        mutableStateOf("")
+    }
+    var e by remember {
         mutableStateOf("")
     }
     val context = LocalContext.current
@@ -107,21 +110,30 @@ fun AddNewSegment() {
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.5f),
+                    .fillMaxHeight(0.33f),
                 value = a,
                 onValueChange = { a = it },
                 label = { Text(text = "Community Address") })
+            OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
+                value = e,
+                onValueChange = { e = it },
+                label = { Text(text = "your exact location") },
+                singleLine = true
+            )
+
             Spacer(modifier = Modifier.height(10.dp))
             Button(onClick = {
                 val sharedPref = SharedPref(context = context)
                 val id = Firebase.auth.uid +(1..100).random()
 
                 if (a.isNotEmpty() && n.isNotEmpty()) {
-                    val community = Community(id, Firebase.auth.uid!!, n, a)
+                    val community = Community( id, Firebase.auth.uid!!, n, a)
                     Repository.Communities.document(id).set(community).addOnSuccessListener {
                         Repository.MyCommunities.add(community).addOnSuccessListener {
                             Toast.makeText(context, "Community added", Toast.LENGTH_SHORT).show()
                         }
+                        Repository.membersOfCommunity(id).add(Request(Firebase.auth.uid!!,sharedPref.name, location = e, imageUrl = sharedPref.imageUrl, status = "accepted"))
                     }
                 } else Toast.makeText(context, "enter name and address", Toast.LENGTH_SHORT).show()
 

@@ -32,6 +32,7 @@ import androidx.navigation.NavController
 import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
+import com.sibdev.firefighter.db.SharedPref
 import com.sibdev.firefighter.models.Community
 import com.sibdev.firefighter.models.User
 import com.sibdev.firefighter.ui.theme.fonts
@@ -65,12 +66,12 @@ fun ProfileScreen(profileNavController: NavController){
             .clickable { profileNavController.navigate("emergency_number_screen") },
             verticalAlignment = Alignment.CenterVertically
             ) {
-            Text(text = "Emergency Numbers", modifier = Modifier.padding(start = 20.dp))
+            Text(text = "জরুরি নাম্বার", modifier = Modifier.padding(start = 20.dp), fontFamily = fonts)
             Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null , modifier = Modifier.padding(end = 20.dp))
         }
         Divider()
         Spacer(modifier = Modifier.height(30.dp))
-        Text(text = "Your Communities", fontSize = 20.sp, fontFamily = fonts, fontWeight = FontWeight.SemiBold)
+        Text(text = "কমিউনিটি", fontSize = 20.sp, fontFamily = fonts, fontWeight = FontWeight.SemiBold)
         LazyColumn{
             items(communities){
                 item: Community ->
@@ -78,7 +79,10 @@ fun ProfileScreen(profileNavController: NavController){
                     .height(200.dp)
                     .fillMaxWidth()
                     .padding(20.dp)
-                    .clickable { profileNavController.navigate("details_screen") }
+                    .clickable {
+                        SharedPref(context = context).community=item.id
+                        profileNavController.navigate("community_screen")
+                    }
                     .background(
                         color = MaterialTheme.colors.primary.copy(0.15f),
                         shape = RoundedCornerShape(20.dp)

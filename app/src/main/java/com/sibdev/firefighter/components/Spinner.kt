@@ -9,11 +9,12 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun Spinner(
     items:List<String>,
-    onValueSelected:(value:String)->Unit,
+    onValueSelected:(value:String,index:Int)->Unit,
     modifier: androidx.compose.ui.Modifier,
 ){
     var selectedvalue by remember {
@@ -37,6 +38,7 @@ fun Spinner(
                     DropdownMenuItem(onClick = {
                         expanded = false
                         selectedvalue = it
+                        onValueSelected(it,items.indexOf(it))
                     }) {
                         Text(text = it)
                     }

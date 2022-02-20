@@ -4,10 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.sibdev.firefighter.screens.AddCommunityScreen
-import com.sibdev.firefighter.screens.DetailsScreen
-import com.sibdev.firefighter.screens.EmergencyNumberScreen
-import com.sibdev.firefighter.screens.ProfileScreen
+import com.sibdev.firefighter.screens.*
 
 @Composable
 fun ProfileNavigation(){
@@ -22,8 +19,8 @@ fun ProfileNavigation(){
         composable("emergency_number_screen"){
             EmergencyNumberScreen(profileNavController)
         }
-        composable("details_screen"){
-            DetailsScreen(nc = profileNavController)
+        composable("community_screen"){
+            CommunityScreen()
         }
     }
 }
